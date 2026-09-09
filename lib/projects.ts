@@ -3,13 +3,15 @@ export type Project = {
   title: string;
   type: string;
   deck: string;
+  reality: string;
   meta: string[];
-  preview: 'integration' | 'inbound' | 'shopping';
   repo: string;
   demo?: string;
   intro: string;
   problem: string;
   flow: { title: string; body: string }[];
+  flowNote: string;
+  truth: { built: string; data: string };
   decisions: { title: string; body: string }[];
   testing: string;
   stack: string;
@@ -20,71 +22,87 @@ export const projects: Project[] = [
     slug: 'integration-ops',
     title: 'Integration Ops',
     type: 'B2B operations',
-    deck: 'A shared recovery workspace for the people involved when a customer integration fails.',
-    meta: ['Incident recovery', 'Role-based workflow', 'Working demo'],
-    preview: 'integration',
+    deck: 'A recovery tool for support teams, customer admins, and engineers when a live integration fails.',
+    reality: 'Working demo. The provider failures are simulated.',
+    meta: ['Incident recovery', 'Role-based workflow', 'Live demo'],
     repo: 'https://github.com/r-neu/Integration-Ops',
     demo: 'https://ops-mvp.ran-yi-contact.workers.dev/access',
-    intro: 'A customer integration is already live. Something fails. Support, the customer, and engineering need to recover it without replaying bad data or widening the incident.',
-    problem: 'The error is only one part of an integration incident. The harder product problem is making ownership clear and giving each person the right action without hiding the technical context they need.',
+    intro: 'Most integration demos stop once data starts moving. This project starts later, when a live connection fails and several people have to coordinate the recovery.',
+    problem: 'A retry button is not enough. A customer may need to fix source data or reconnect an account. An engineer may need to change a mapping or roll out a connector patch. They need one view of the incident, but they should not have the same controls.',
     flow: [
-      { title: 'See the impact', body: 'The incident opens with the affected customer, records, and workflows rather than a raw error log.' },
-      { title: 'Find the owner', body: 'The next step is assigned to the customer, support, engineering, or the platform based on the failure.' },
-      { title: 'Recover safely', body: 'The fix may be a data approval, reconnection, selective retry, or a gated connector rollout.' },
-      { title: 'Close the loop', body: 'Customer updates and recovery state stay with the incident so progress is visible across roles.' },
+      { title: 'Open the incident', body: 'The team sees who is affected and what failed.' },
+      { title: 'Work out who can fix it', body: 'The next step may belong to the customer, support, engineering, or an automatic retry.' },
+      { title: 'Apply the right recovery', body: 'The prototype supports data approval, reconnection, selective replay, and a controlled rollout.' },
+      { title: 'Keep everyone updated', body: 'Recovery state and customer messages stay with the incident.' },
     ],
+    flowNote: 'The demo has five repeatable failure paths. Each one can be opened from the role responsible for the next step.',
+    truth: {
+      built: 'A role-based incident workspace with five recovery paths, isolated demo runs, customer updates, selective retries, and rollout controls.',
+      data: 'Salesforce Easy Spaces sample records. All failure events are simulated; the HubSpot, Google Sheets, and Slack cases follow public provider behavior.',
+    },
     decisions: [
-      { title: 'One incident, different controls', body: 'Support, customer admins, and engineers work from the same incident. Each role sees the context and actions it is responsible for.' },
-      { title: 'Fix the problem at the right level', body: 'Missing source data stays quarantined. Expired authorization triggers a tenant reconnection. A shared connector change uses a rollout plan.' },
-      { title: 'Make rollout part of the recovery flow', body: 'Canary status, health gates, cohort rollout, and rollback are visible product steps rather than background deployment details.' },
+      { title: 'The incident is the starting point', body: 'The first screen shows customer impact and the next action. Integration settings and technical detail remain available without taking over the recovery flow.' },
+      { title: 'The recovery depends on the failure', body: 'Missing source data stays quarantined. Expired access sends the customer to reconnect. A mapping error goes to engineering.' },
+      { title: 'A connector change needs rollout controls', body: 'A shared connector can affect more than one customer. The Slack recovery path includes a canary, health checks, staged rollout, and rollback.' },
     ],
-    testing: 'The demo covers five failure paths across Salesforce, HubSpot, Google Sheets, and Slack. Each visitor gets an isolated run, so the full incident can be stepped through without affecting anyone else.',
+    testing: 'I built five repeatable failure paths and tests for role permissions, isolated demo runs, retry behavior, exposure checks, and rollout gates.',
     stack: 'React, TypeScript, Vinext, Cloudflare Workers, D1, Drizzle, Tailwind CSS',
   },
   {
     slug: 'inbound-response-desk',
     title: 'Inbound Response Desk',
     type: 'B2B workflow',
-    deck: 'A first-response tool that prepares a draft, priority, and reply target from a website inquiry.',
-    meta: ['Inquiry triage', 'Human review', 'Local model'],
-    preview: 'inbound',
+    deck: 'A first-response tool for website inquiries.',
+    reality: 'Working portfolio MVP. Tested with synthetic inquiries.',
+    meta: ['Inquiry triage', 'Draft preparation', 'Human review'],
     repo: 'https://github.com/r-neu/inbound-response-desk',
-    intro: 'Website inquiries repeat the same work: understand the request, decide how quickly it needs a response, find the right product information, and write the first reply.',
-    problem: 'This work is easy to delay and inconsistent when it sits alongside everything else a small B2B team handles. The product focuses on getting each inquiry to a useful first response with less manual preparation.',
+    intro: 'Responding to a website inquiry means reading the request, deciding its priority, finding the right product information, and writing a reply. This prototype prepares that first response for review.',
+    problem: 'The same small decisions recur with every inquiry. Response speed and quality can depend on who happens to pick it up and how much other work they have at the time.',
     flow: [
-      { title: 'Receive', body: 'A website inquiry enters the response queue.' },
-      { title: 'Prepare', body: 'The system adds a priority, reply target, and draft based on the message and product information.' },
-      { title: 'Review', body: 'The team checks the original request, adjusts the draft when needed, and replies by email.' },
+      { title: 'Website inquiry', body: 'A visitor submits the form.' },
+      { title: 'Draft and priority', body: 'The request enters the queue with a draft, priority, and reply target.' },
+      { title: 'Team review', body: 'The team checks the request, edits the draft if needed, and replies by email.' },
     ],
+    flowNote: 'The prototype covers the work between receiving an inquiry and having a reply ready to send.',
+    truth: {
+      built: 'A website form and response queue that prepare a priority, reply target, and draft for review.',
+      data: 'Synthetic website inquiries and product information written for the prototype.',
+    },
     decisions: [
-      { title: 'Keep the MVP on the first response', body: 'Routing, ownership rules, CRM records, and reporting depend on the team around the tool. The core flow stops once a reply is ready to send.' },
-      { title: 'Use rules where consistency matters', body: 'The model interprets the inquiry and writes the draft. Priority, reply targets, and unsupported-claim checks stay rule-based.' },
-      { title: 'Keep review in the main flow', body: 'The original inquiry, draft, priority, and reply target appear together. The user can make the final judgment without opening a separate model view.' },
+      { title: 'The scope stops at a reply ready for review', body: 'I left routing, ownership, CRM records, and reporting out of the core flow. Those features depend on the team and tools around the product.' },
+      { title: 'Priority and timing come from rules', body: 'The model reads the inquiry and writes the draft. Rules set the priority and reply target, and they check the draft for unsupported claims.' },
+      { title: 'The review stays on the main screen', body: 'The request, draft, priority, and reply target appear together so the user can make the final call from one screen.' },
     ],
-    testing: 'API, workflow, priority, and draft checks are covered by automated tests. Synthetic inquiries are used to catch classification errors, unsupported claims, repeated wording, and replies that are awkward to send.',
+    testing: 'The tests cover the API, priority rules, draft validation, and browser workflow. Synthetic cases are used to catch classification errors, unsupported claims, repeated wording, and awkward replies.',
     stack: 'React, TypeScript, FastAPI, SQLite, LangGraph, Ollama, Qwen 3.5 9B',
   },
   {
     slug: 'shopping-assistant',
     title: 'Shopping Assistant',
     type: 'E-commerce',
-    deck: 'A shopping agent for people who know roughly what they want, but not what to search for.',
-    meta: ['Product discovery', 'Fine-tuned model', 'Local inference'],
-    preview: 'shopping',
+    deck: 'A shopping agent for people who have a rough idea but do not know what to search for yet.',
+    reality: 'Working local prototype with a 100-product demo catalog.',
+    meta: ['Product discovery', 'Catalog retrieval', 'Local inference'],
     repo: 'https://github.com/r-neu/e-commerce-agent-project',
-    intro: 'Shoppers do not always begin with a product name or a complete set of filters. They may only know the use case, budget, or a few preferences and work out the rest while browsing.',
-    problem: 'A search box works best when the shopper already knows the right words. This project lets the conversation begin earlier, when the request is still rough, and uses the first results to help the shopper narrow it down.',
+    intro: 'A shopper may begin with a use case, a budget, or a few preferences rather than a product name. The agent uses that rough request to find products and lets the shopper refine the results in the same conversation.',
+    problem: 'Keyword search and filters work once the shopper knows what to ask for. They are less useful at the start, when the shopper is still working out the criteria.',
     flow: [
-      { title: 'Describe', body: 'The shopper explains what they need in their own words.' },
-      { title: 'Compare', body: 'The agent searches the catalog and returns a short list with the details behind each match.' },
-      { title: 'Refine', body: 'The shopper adds a preference, changes the budget, or asks about shipping and returns in the same conversation.' },
+      { title: 'Rough request', body: 'The shopper explains what they know so far.' },
+      { title: 'Catalog search', body: 'The agent retrieves relevant products from the demo catalog.' },
+      { title: 'Shortlist', body: 'The response uses the retrieved price, brand, features, and rating.' },
+      { title: 'Follow-up', body: 'The shopper narrows the results or asks about shipping and returns.' },
     ],
+    flowNote: 'The conversation can begin before the shopper has chosen keywords or filters.',
+    truth: {
+      built: 'A Gradio chat app with catalog retrieval, product shortlists, follow-up questions, and shipping and return answers.',
+      data: 'A 100-product demo catalog and a fine-tuning set with 120,000 product Q&A and review-based examples.',
+    },
     decisions: [
-      { title: 'Stay before the purchase', body: 'The first version covers discovery, comparison, shipping, and returns. Checkout, payment, order tracking, and accounts need customer or transaction data outside this prototype.' },
-      { title: 'Retrieve catalog facts at query time', body: 'Prices, ratings, brands, and features stay outside the model. The agent retrieves the current product records before writing an answer.' },
-      { title: 'Keep policy answers separate', body: 'Shipping and return information comes from store policy files instead of model memory.' },
+      { title: 'The scope ends before checkout', body: 'The prototype covers product discovery, comparison, shipping, and returns. Checkout, payment, tracking, and accounts are outside the scope.' },
+      { title: 'Catalog facts are retrieved when needed', body: 'Prices, ratings, brands, and features are retrieved when the question arrives. A catalog update does not require another fine-tuning run.' },
+      { title: 'Store policies stay outside the model', body: 'Shipping and return answers come from the relevant policy record rather than the model training data.' },
     ],
-    testing: 'The model was fine-tuned on 120,000 product Q&A and review-based examples. A 100-question test set covers price, brand, rating, features, shipping, returns, and general product information, with another 20 cases for ambiguous and unsupported requests.',
+    testing: 'A 100-question test set covers price, brand, rating, features, shipping, returns, and general product information. Another 20 cases cover vague wording and unsupported requests.',
     stack: 'Python, Llama 3.1, QLoRA, llama.cpp, BGE-M3, Sentence Transformers, Gradio',
   },
 ];

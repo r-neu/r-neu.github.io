@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://r-neu.github.io'),
   title: 'Ran Yi — Product Portfolio',
-  description: 'Selected product work across integration operations, inbound response, and e-commerce search.',
+  description: 'Product work by Ran Yi across integration operations, inbound response, and e-commerce search.',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

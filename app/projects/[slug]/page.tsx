@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
-import { ProjectPreview } from '@/components/project-preview';
+import { ProjectFlow } from '@/components/project-flow';
 import { SiteHeader } from '@/components/site-header';
 import { getProject, projects } from '@/lib/projects';
 
@@ -41,7 +41,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </header>
 
-        <ProjectPreview kind={project.preview} large />
+        <section className="truth-block" aria-labelledby="truth-heading">
+          <h2 id="truth-heading">Project status</h2>
+          <dl>
+            <div><dt>Built</dt><dd>{project.truth.built}</dd></div>
+            <div><dt>Data</dt><dd>{project.truth.data}</dd></div>
+          </dl>
+        </section>
+
+        <ProjectFlow
+          title={project.title}
+          steps={project.flow.map((step) => step.title)}
+          note={project.flowNote}
+          large
+        />
 
         <section className="case-section two-column" aria-labelledby="problem-heading">
           <h2 id="problem-heading">The problem</h2><p>{project.problem}</p>

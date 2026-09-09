@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { ProjectPreview } from '@/components/project-preview';
+import { ProjectFlow } from '@/components/project-flow';
 import { SiteHeader } from '@/components/site-header';
 import { projects } from '@/lib/projects';
 
@@ -10,13 +10,13 @@ export default function Home() {
       <SiteHeader />
 
       <section className="intro wrap" aria-labelledby="page-title">
-        <p className="eyebrow">Product portfolio / 01—03</p>
+        <p className="eyebrow">Ran Yi / Product manager</p>
         <div className="intro-grid">
-          <h1 id="page-title">Selected product work</h1>
+          <h1 id="page-title">Product work</h1>
           <p className="intro-copy">
-            I’m Ran Yi, a product manager who builds working prototypes. These
-            projects focus on the moment when a user needs to decide what to do
-            next.
+            Three prototypes I built for integration recovery, website
+            inquiries, and online shopping. Each case study separates the
+            product from the sample or simulated data used to demonstrate it.
           </p>
         </div>
       </section>
@@ -29,24 +29,29 @@ export default function Home() {
               <p className="project-type">{project.type}</p>
               <h2><Link href={`/projects/${project.slug}`}>{project.title}</Link></h2>
               <p className="project-deck">{project.deck}</p>
+              <p className="project-reality">{project.reality}</p>
               <p className="project-meta">{project.meta.join(' · ')}</p>
               <Link className="text-link" href={`/projects/${project.slug}`}>
                 Read the case study <ArrowUpRight aria-hidden="true" size={15} />
               </Link>
             </div>
             <Link className="project-visual-link" href={`/projects/${project.slug}`} aria-label={`Open ${project.title} case study`}>
-              <ProjectPreview kind={project.preview} />
+              <ProjectFlow
+                title={project.title}
+                steps={project.flow.map((step) => step.title)}
+                note={project.flowNote}
+              />
             </Link>
           </article>
         ))}
       </section>
 
       <section className="about wrap" id="about" aria-labelledby="about-title">
-        <p className="eyebrow">A short note</p>
+        <p className="eyebrow">About</p>
         <div className="about-grid">
           <h2 id="about-title">About</h2>
           <div>
-            <p>I use prototypes to work through the details that are easy to miss in a deck: ownership, edge cases, system limits, and what a user actually sees.</p>
+            <p>I like working on products with messy handoffs and unclear next steps. Building the prototype helps me see where the product decisions actually are.</p>
             <a className="text-link" href="https://github.com/r-neu">GitHub <ArrowUpRight aria-hidden="true" size={15} /></a>
           </div>
         </div>
