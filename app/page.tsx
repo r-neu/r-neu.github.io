@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { ProjectFlow } from '@/components/project-flow';
+import { ProjectArtifact } from '@/components/project-artifact';
 import { SiteHeader } from '@/components/site-header';
 import { projects } from '@/lib/projects';
 
@@ -36,11 +36,7 @@ export default function Home() {
               </Link>
             </div>
             <Link className="project-visual-link" href={`/projects/${project.slug}`} aria-label={`Open ${project.title} case study`}>
-              <ProjectFlow
-                title={project.title}
-                steps={project.flow.map((step) => step.title)}
-                note={project.flowNote}
-              />
+              <ProjectArtifact kind={project.artifact} />
             </Link>
           </article>
         ))}

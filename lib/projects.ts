@@ -5,12 +5,12 @@ export type Project = {
   deck: string;
   reality: string;
   meta: string[];
+  artifact: 'integration' | 'inbound' | 'shopping';
   repo: string;
   demo?: string;
   intro: string;
   problem: string;
   flow: { title: string; body: string }[];
-  flowNote: string;
   truth: { built: string; data: string };
   decisions: { title: string; body: string }[];
   testing: string;
@@ -25,6 +25,7 @@ export const projects: Project[] = [
     deck: 'A recovery tool for support teams, customer admins, and engineers when a live integration fails.',
     reality: 'Working demo. The provider failures are simulated.',
     meta: ['Incident recovery', 'Role-based workflow', 'Live demo'],
+    artifact: 'integration',
     repo: 'https://github.com/r-neu/Integration-Ops',
     demo: 'https://ops-mvp.ran-yi-contact.workers.dev/access',
     intro: 'Most integration demos stop once data starts moving. This project starts later, when a live connection fails and several people have to coordinate the recovery.',
@@ -35,7 +36,6 @@ export const projects: Project[] = [
       { title: 'Apply the right recovery', body: 'The prototype supports data approval, reconnection, selective replay, and a controlled rollout.' },
       { title: 'Keep everyone updated', body: 'Recovery state and customer messages stay with the incident.' },
     ],
-    flowNote: 'The demo has five repeatable failure paths. Each one can be opened from the role responsible for the next step.',
     truth: {
       built: 'A role-based incident workspace with five recovery paths, isolated demo runs, customer updates, selective retries, and rollout controls.',
       data: 'Salesforce Easy Spaces sample records. All failure events are simulated; the HubSpot, Google Sheets, and Slack cases follow public provider behavior.',
@@ -55,6 +55,7 @@ export const projects: Project[] = [
     deck: 'A first-response tool for website inquiries.',
     reality: 'Working portfolio MVP. Tested with synthetic inquiries.',
     meta: ['Inquiry triage', 'Draft preparation', 'Human review'],
+    artifact: 'inbound',
     repo: 'https://github.com/r-neu/inbound-response-desk',
     intro: 'Responding to a website inquiry means reading the request, deciding its priority, finding the right product information, and writing a reply. This prototype prepares that first response for review.',
     problem: 'The same small decisions recur with every inquiry. Response speed and quality can depend on who happens to pick it up and how much other work they have at the time.',
@@ -63,7 +64,6 @@ export const projects: Project[] = [
       { title: 'Draft and priority', body: 'The request enters the queue with a draft, priority, and reply target.' },
       { title: 'Team review', body: 'The team checks the request, edits the draft if needed, and replies by email.' },
     ],
-    flowNote: 'The prototype covers the work between receiving an inquiry and having a reply ready to send.',
     truth: {
       built: 'A website form and response queue that prepare a priority, reply target, and draft for review.',
       data: 'Synthetic website inquiries and product information written for the prototype.',
@@ -83,6 +83,7 @@ export const projects: Project[] = [
     deck: 'A shopping agent for people who have a rough idea but do not know what to search for yet.',
     reality: 'Working local prototype with a 100-product demo catalog.',
     meta: ['Product discovery', 'Catalog retrieval', 'Local inference'],
+    artifact: 'shopping',
     repo: 'https://github.com/r-neu/e-commerce-agent-project',
     intro: 'A shopper may begin with a use case, a budget, or a few preferences rather than a product name. The agent uses that rough request to find products and lets the shopper refine the results in the same conversation.',
     problem: 'Keyword search and filters work once the shopper knows what to ask for. They are less useful at the start, when the shopper is still working out the criteria.',
@@ -92,7 +93,6 @@ export const projects: Project[] = [
       { title: 'Shortlist', body: 'The response uses the retrieved price, brand, features, and rating.' },
       { title: 'Follow-up', body: 'The shopper narrows the results or asks about shipping and returns.' },
     ],
-    flowNote: 'The conversation can begin before the shopper has chosen keywords or filters.',
     truth: {
       built: 'A Gradio chat app with catalog retrieval, product shortlists, follow-up questions, and shipping and return answers.',
       data: 'A 100-product demo catalog and a fine-tuning set with 120,000 product Q&A and review-based examples.',

@@ -140,65 +140,107 @@ a { color: inherit; text-decoration: none; }
 .text-link svg { transition: transform 160ms ease; }
 .text-link:hover svg { transform: translate(2px, -2px); }
 .project-visual-link { display: block; }
-.project-visual-link .workflow-panel { transition: transform 200ms ease, border-color 200ms ease; }
-.project-visual-link:hover .workflow-panel { transform: translateY(-3px); border-color: #77766f; }
+.project-visual-link .artifact { transition: transform 200ms ease, border-color 200ms ease; }
+.project-visual-link:hover .artifact { transform: translateY(-3px); border-color: #77766f; }
 
-.workflow-panel {
+.artifact {
   min-height: 350px;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  margin: 0;
+  overflow: hidden;
   border: 1px solid #aaa69c;
-  background: var(--soft);
 }
-.workflow-panel-large { min-height: 500px; margin-top: 72px; }
-.workflow-heading {
+.artifact-large { min-height: 500px; margin-top: 72px; }
+.artifact figcaption {
   min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   padding: 0 20px;
-  border-bottom: 1px solid #aaa69c;
-  color: #575951;
+  border-bottom: 1px solid currentColor;
   font-size: 10px;
   letter-spacing: .1em;
   text-transform: uppercase;
+  opacity: .72;
 }
-.workflow-panel ol {
-  list-style: none;
+.artifact > p {
+  margin: 0;
+  padding: 14px 20px;
+  border-top: 1px solid currentColor;
+  font-size: 10px;
+  letter-spacing: .06em;
+  opacity: .65;
+}
+.artifact-large > p { padding: 18px 28px; font-size: 11px; }
+
+.integration-artifact { background: #1c2721; color: #edf0e9; }
+.failure-list { align-self: center; padding: 18px 26px; }
+.failure-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: 112px 1fr 145px;
+  gap: 20px;
+  align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid rgb(237 240 233 / 18%);
+}
+.failure-row:last-child { border-bottom: 0; }
+.failure-row strong { font-size: 11px; font-weight: 650; }
+.failure-row span { font-family: Georgia, "Times New Roman", serif; font-size: 16px; }
+.failure-row small { color: #b5beb7; font-size: 10px; }
+.artifact-large .failure-list { padding: 30px 42px; }
+.artifact-large .failure-row { grid-template-columns: 150px 1fr 190px; padding: 19px 0; }
+.artifact-large .failure-row span { font-size: 22px; }
+.artifact-large .failure-row strong, .artifact-large .failure-row small { font-size: 12px; }
+
+.inbound-artifact { background: #e9e1d4; color: #27251f; }
+.inbound-artifact blockquote, .shopping-artifact blockquote {
+  align-self: center;
+  max-width: 620px;
   margin: 0;
-  padding: 0;
-}
-.workflow-panel li {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 32px;
-  padding: 28px 20px;
-  border-right: 1px solid #bbb7ad;
-}
-.workflow-panel li:last-child { border-right: 0; }
-.workflow-panel li > span { color: var(--muted); font-size: 10px; }
-.workflow-panel li > strong {
-  max-width: 150px;
+  padding: 34px 38px 24px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.12;
+  font-size: clamp(24px, 2.35vw, 37px);
+  line-height: 1.18;
+  letter-spacing: -.025em;
 }
-.workflow-panel-large li { padding: 42px 28px; }
-.workflow-panel-large li > strong { max-width: 190px; font-size: 29px; }
-.workflow-panel > p {
-  margin: 0;
-  padding: 18px 20px;
-  border-top: 1px solid #aaa69c;
-  color: #55574f;
-  font-size: 12px;
+.evaluation-result {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 28px 22px;
+  border-top: 1px solid #b9af9f;
 }
-.workflow-panel-large > p { padding: 22px 28px; font-size: 14px; }
+.evaluation-result > div { padding: 14px 12px 0 0; }
+.evaluation-result dt, .catalog-record dt, .catalog-record > div > span {
+  color: #656056;
+  font-size: 9px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.evaluation-result dd { margin: 4px 0 0; font-size: 12px; font-weight: 650; }
+.inbound-artifact.artifact-large blockquote { padding-inline: 60px; }
+.artifact-large .evaluation-result { margin: 0 46px 34px; }
+
+.shopping-artifact { background: #d9e4e5; color: #1f292b; }
+.shopping-artifact blockquote { padding-bottom: 18px; }
+.catalog-record {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 28px;
+  margin: 0 28px 24px;
+  padding-top: 16px;
+  border-top: 1px solid #9daeb0;
+}
+.catalog-record > div { display: flex; flex-direction: column; gap: 5px; }
+.catalog-record > div > strong { font-size: 13px; }
+.catalog-record dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0; }
+.catalog-record dd { margin: 4px 0 0; font-size: 12px; font-weight: 650; }
+.artifact-large .catalog-record { margin: 0 46px 34px; }
+.artifact-large .catalog-record > div > strong { font-size: 16px; }
+
+.artifact figcaption, .artifact > p { border-color: rgb(23 25 21 / 22%); }
+.integration-artifact figcaption, .integration-artifact > p { border-color: rgb(237 240 233 / 20%); }
 
 .about { padding: 126px 0 138px; }
 .about-grid { align-items: start; }
@@ -369,18 +411,15 @@ a { color: inherit; text-decoration: none; }
   .project-row { grid-template-columns: 28px 1fr; gap: 12px; padding: 34px 0 40px; }
   .project-summary h2 { font-size: 40px; }
   .project-deck { margin-top: 18px; font-size: 15px; }
-  .workflow-panel, .workflow-panel-large { min-height: 0; margin-top: 0; }
-  .workflow-panel-large { margin-top: 52px; }
-  .workflow-panel ol { grid-template-columns: 1fr; }
-  .workflow-panel li, .workflow-panel-large li {
-    display: grid;
-    grid-template-columns: 34px 1fr;
-    gap: 10px;
-    padding: 16px;
-    border-right: 0;
-    border-bottom: 1px solid #bbb7ad;
-  }
-  .workflow-panel li > strong, .workflow-panel-large li > strong { max-width: none; font-size: 17px; }
+  .artifact, .artifact-large { min-height: 330px; margin-top: 0; }
+  .artifact-large { margin-top: 52px; }
+  .failure-list, .artifact-large .failure-list { padding: 14px 18px; }
+  .failure-row, .artifact-large .failure-row { grid-template-columns: 82px 1fr; gap: 12px; padding: 11px 0; }
+  .failure-row small { grid-column: 2; }
+  .failure-row span, .artifact-large .failure-row span { font-size: 14px; }
+  .inbound-artifact blockquote, .shopping-artifact blockquote { padding: 24px 20px 16px; font-size: 22px; }
+  .evaluation-result { margin: 0 18px 18px; }
+  .catalog-record, .artifact-large .catalog-record { grid-template-columns: 1fr; margin: 0 18px 18px; }
   .about { padding: 88px 0 96px; }
   .case-study { padding-top: 34px; }
   .case-hero { padding-top: 64px; }

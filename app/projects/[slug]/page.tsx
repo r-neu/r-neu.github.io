@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
-import { ProjectFlow } from '@/components/project-flow';
+import { ProjectArtifact } from '@/components/project-artifact';
 import { SiteHeader } from '@/components/site-header';
 import { getProject, projects } from '@/lib/projects';
 
@@ -49,12 +49,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </dl>
         </section>
 
-        <ProjectFlow
-          title={project.title}
-          steps={project.flow.map((step) => step.title)}
-          note={project.flowNote}
-          large
-        />
+        <ProjectArtifact kind={project.artifact} large />
 
         <section className="case-section two-column" aria-labelledby="problem-heading">
           <h2 id="problem-heading">The problem</h2><p>{project.problem}</p>
