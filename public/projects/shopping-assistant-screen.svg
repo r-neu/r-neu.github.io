@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1206" height="2622" viewBox="0 0 1206 2622">
+  <defs>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff9a9e"/><stop offset=".52" stop-color="#fecfef"/><stop offset="1" stop-color="#ff9a9e"/>
+    </linearGradient>
+    <linearGradient id="aqua" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a8edea"/><stop offset=".52" stop-color="#fed6e3"/><stop offset="1" stop-color="#a8edea"/>
+    </linearGradient>
+    <linearGradient id="soft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8f4fd"/><stop offset="1" stop-color="#d1e7dd"/>
+    </linearGradient>
+    <filter id="button-shadow" x="-20%" y="-30%" width="140%" height="170%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#1e2a32" flood-opacity=".12"/>
+    </filter>
+    <filter id="panel-shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#23303a" flood-opacity=".08"/>
+    </filter>
+    <style>
+      .serif { font-family: Georgia, 'Times New Roman', serif; fill: #303740; }
+      .preset { font-size: 37px; font-weight: 700; text-anchor: middle; }
+      .message { font-size: 39px; }
+      .answer { font-size: 36px; }
+      .muted { fill: #929a9e; }
+    </style>
+  </defs>
+
+  <rect width="1206" height="2622" fill="#f5f5f3"/>
+
+  <g filter="url(#button-shadow)">
+    <rect x="88" y="290" width="500" height="150" rx="34" fill="url(#pink)" stroke="#eeaab3"/>
+    <rect x="618" y="290" width="500" height="150" rx="34" fill="url(#aqua)" stroke="#c2dedf"/>
+  </g>
+  <text class="serif preset" x="338" y="350">Show me paint set</text>
+  <text class="serif preset" x="338" y="398">products under $300</text>
+  <text class="serif preset" x="868" y="350">Cookware sets with</text>
+  <text class="serif preset" x="868" y="398">good ratings</text>
+
+  <g filter="url(#panel-shadow)">
+    <rect x="88" y="482" width="1030" height="1110" rx="34" fill="#fff" stroke="#e0e4e5" stroke-width="2"/>
+  </g>
+  <rect x="374" y="544" width="676" height="172" rx="18" fill="url(#soft)" stroke="#d6dcd8"/>
+  <text class="serif message" x="416" y="612">Show me paint set products</text>
+  <text class="serif message" x="416" y="668">under $300</text>
+
+  <rect x="988" y="742" width="62" height="62" rx="14" fill="#fff" stroke="#dfe3e4" stroke-width="2"/>
+  <rect x="1007" y="759" width="22" height="24" rx="2" fill="none" stroke="#7c8387" stroke-width="3"/>
+  <path d="M1014 759v-7h23v25h-8" fill="none" stroke="#7c8387" stroke-width="3"/>
+
+  <g filter="url(#panel-shadow)">
+    <rect x="136" y="838" width="850" height="612" rx="22" fill="#fff" stroke="#dde2e4" stroke-width="2"/>
+  </g>
+  <text class="serif answer" x="178" y="908">I found three paint sets under $300:</text>
+  <text class="serif answer" x="208" y="984">•  <tspan font-weight="700">Crayola Paint Set - Sewing</tspan></text>
+  <text class="serif answer" x="238" y="1038">— $50.38 · 3.1 rating</text>
+  <text class="serif answer" x="208" y="1114">•  <tspan font-weight="700">Mod Podge Paint Set -</tspan></text>
+  <text class="serif answer" x="238" y="1168"><tspan font-weight="700">Scrapbooking</tspan> — $164.13 · 3.1 rating</text>
+  <text class="serif answer" x="208" y="1244">•  <tspan font-weight="700">Crayola Paint Set - Painting</tspan></text>
+  <text class="serif answer" x="238" y="1298">— $175.29 · 4.5 rating</text>
+
+  <g filter="url(#panel-shadow)">
+    <rect x="88" y="1640" width="1030" height="224" rx="28" fill="#fff" stroke="#e1e5e6" stroke-width="5"/>
+  </g>
+  <rect x="108" y="1660" width="990" height="184" rx="18" fill="#fff" stroke="#e0e4e5" stroke-width="2"/>
+  <text class="serif muted" x="148" y="1758" font-size="31">Ask me about products or find recommendations</text>
+
+  <g filter="url(#button-shadow)">
+    <rect x="88" y="1898" width="1030" height="146" rx="30" fill="url(#soft)"/>
+  </g>
+  <text class="serif" x="603" y="1987" font-size="38" font-weight="700" text-anchor="middle">Submit</text>
+</svg>

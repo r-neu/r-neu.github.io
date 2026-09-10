@@ -1,61 +1,66 @@
+import Image from 'next/image';
+
 type ProjectArtifactProps = {
   kind: 'integration' | 'inbound' | 'shopping';
-  large?: boolean;
 };
 
-const failures = [
-  ['Salesforce', 'Missing required value', 'Customer admin'],
-  ['HubSpot', 'Authorization expires', 'Customer admin'],
-  ['Salesforce', 'Mapped value rejected', 'Integration engineer'],
-  ['Google Sheets', 'HTTP 429', 'Platform'],
-  ['Slack', 'File upload endpoint retired', 'Integration engineer + Support'],
-];
+const artifacts = {
+  integration: {
+    src: '/projects/integration-ops.png',
+    alt: 'Integration Ops incident queue showing active recovery work and ownership',
+    caption: 'Incident queue',
+    width: 2560,
+    height: 1440,
+  },
+  inbound: {
+    src: '/projects/inbound-response-desk.png',
+    alt: 'Inbound Response Desk showing a website inquiry, priority, reply target, and editable draft',
+    caption: 'Website inquiry',
+    width: 2560,
+    height: 1440,
+  },
+  shopping: {
+    src: '/projects/shopping-assistant-screen.svg',
+    alt: 'Shopping Assistant chat returning paint sets under $300 from the demo catalog',
+    caption: 'Catalog search',
+    width: 1206,
+    height: 2622,
+  },
+} as const;
 
-export function ProjectArtifact({ kind, large = false }: ProjectArtifactProps) {
-  if (kind === 'integration') {
-    return (
-      <figure className={`artifact integration-artifact ${large ? 'artifact-large' : ''}`}>
-        <figcaption><span>Demo coverage</span><span>5 recovery paths</span></figcaption>
-        <div className="failure-list">
-          {failures.map(([provider, failure, owner]) => (
-            <div className="failure-row" key={`${provider}-${failure}`}>
-              <strong>{provider}</strong><span>{failure}</span><small>{owner}</small>
-            </div>
-          ))}
-        </div>
-        <p>From the working demo</p>
-      </figure>
-    );
-  }
-
-  if (kind === 'inbound') {
-    return (
-      <figure className={`artifact inbound-artifact ${large ? 'artifact-large' : ''}`}>
-        <figcaption><span>Synthetic evaluation case</span><span>pricing_without_timeline</span></figcaption>
-        <blockquote>“Could you send pricing information for a 30 person team?”</blockquote>
-        <dl className="evaluation-result">
-          <div><dt>Expected intent</dt><dd>Pricing</dd></div>
-          <div><dt>Expected signal</dt><dd>Medium</dd></div>
-          <div><dt>Expected priority</dt><dd>Medium</dd></div>
-        </dl>
-        <p>From backend/evals/cases.json</p>
-      </figure>
-    );
-  }
+export function ProjectArtifact({ kind }: ProjectArtifactProps) {
+  const artifact = artifacts[kind];
+  const image = (
+    <Image
+      className="artifact-image"
+      src={artifact.src}
+      alt={artifact.alt}
+      width={artifact.width}
+      height={artifact.height}
+      sizes="(max-width: 980px) 100vw, 58vw"
+      loading={kind === 'shopping' ? 'eager' : undefined}
+    />
+  );
 
   return (
-    <figure className={`artifact shopping-artifact ${large ? 'artifact-large' : ''}`}>
-      <figcaption><span>Demo catalog test</span><span>Home &amp; Kitchen</span></figcaption>
-      <blockquote>“Is Cuisinart Cookware Set - Kitchen Appliances professional grade?”</blockquote>
-      <div className="catalog-record">
-        <div><span>Retrieved product</span><strong>Cuisinart Cookware Set - Kitchen Appliances</strong></div>
-        <dl>
-          <div><dt>Price</dt><dd>$261.67</dd></div>
-          <div><dt>Rating</dt><dd>4.1</dd></div>
-          <div><dt>Feature</dt><dd>Easy Clean</dd></div>
-        </dl>
+    <figure className={`artifact screenshot-artifact ${kind}-artifact`}>
+      <div className="artifact-image-wrap">
+        {kind === 'shopping' ? (
+          <div className="iphone-mockup">
+            <div className="iphone-screen">{image}</div>
+            <Image
+              className="iphone-bezel"
+              src="/projects/iphone-16-pro-natural-titanium.png"
+              alt=""
+              width={1406}
+              height={2822}
+              aria-hidden="true"
+              loading="eager"
+            />
+          </div>
+        ) : image}
       </div>
-      <p>From the 100-product demo catalog and test set</p>
+      <figcaption className="artifact-caption">{artifact.caption}</figcaption>
     </figure>
   );
 }

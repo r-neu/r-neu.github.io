@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { ProjectArtifact } from '@/components/project-artifact';
 import { SiteHeader } from '@/components/site-header';
@@ -10,13 +9,11 @@ export default function Home() {
       <SiteHeader />
 
       <section className="intro wrap" aria-labelledby="page-title">
-        <p className="eyebrow">Ran Yi / Product manager</p>
         <div className="intro-grid">
           <h1 id="page-title">Product work</h1>
           <p className="intro-copy">
-            Three prototypes I built for integration recovery, website
-            inquiries, and online shopping. Each case study separates the
-            product from the sample or simulated data used to demonstrate it.
+            I built these three projects independently and tested each as a
+            working prototype.
           </p>
         </div>
       </section>
@@ -27,33 +24,20 @@ export default function Home() {
             <div className="project-number" aria-hidden="true">0{index + 1}</div>
             <div className="project-summary">
               <p className="project-type">{project.type}</p>
-              <h2><Link href={`/projects/${project.slug}`}>{project.title}</Link></h2>
+              <h2><a href={project.repo} target="_blank" rel="noreferrer">{project.title}</a></h2>
               <p className="project-deck">{project.deck}</p>
-              <p className="project-reality">{project.reality}</p>
-              <p className="project-meta">{project.meta.join(' · ')}</p>
-              <Link className="text-link" href={`/projects/${project.slug}`}>
-                Read the case study <ArrowUpRight aria-hidden="true" size={15} />
-              </Link>
+              <p className="project-meta">{project.meta}</p>
+              <a className="text-link" href={project.repo} target="_blank" rel="noreferrer">
+                View on GitHub <ArrowUpRight aria-hidden="true" size={15} />
+              </a>
             </div>
-            <Link className="project-visual-link" href={`/projects/${project.slug}`} aria-label={`Open ${project.title} case study`}>
+            <a className="project-visual-link" href={project.repo} target="_blank" rel="noreferrer" aria-label={`View ${project.title} on GitHub`}>
               <ProjectArtifact kind={project.artifact} />
-            </Link>
+            </a>
           </article>
         ))}
       </section>
 
-      <section className="about wrap" id="about" aria-labelledby="about-title">
-        <p className="eyebrow">About</p>
-        <div className="about-grid">
-          <h2 id="about-title">About</h2>
-          <div>
-            <p>I like working on products with messy handoffs and unclear next steps. Building the prototype helps me see where the product decisions actually are.</p>
-            <a className="text-link" href="https://github.com/r-neu">GitHub <ArrowUpRight aria-hidden="true" size={15} /></a>
-          </div>
-        </div>
-      </section>
-
-      <footer className="site-footer wrap"><span>Ran Yi</span><span>Product portfolio</span></footer>
     </main>
   );
 }
