@@ -39,6 +39,7 @@ export function ProjectArtifact({ kind }: ProjectArtifactProps) {
       height={artifact.height}
       sizes="(max-width: 980px) 100vw, 58vw"
       loading={kind === 'shopping' ? 'eager' : undefined}
+      unoptimized
     />
   );
 
@@ -56,6 +57,7 @@ export function ProjectArtifact({ kind }: ProjectArtifactProps) {
               height={2822}
               aria-hidden="true"
               loading="eager"
+              unoptimized
             />
           </div>
         ) : image}

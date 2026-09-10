@@ -12,8 +12,7 @@ export default function Home() {
         <div className="intro-grid">
           <h1 id="page-title">Product work</h1>
           <p className="intro-copy">
-            I built these three projects independently and tested each as a
-            working prototype.
+            Personal projects I’ve built in my own time.
           </p>
         </div>
       </section>
