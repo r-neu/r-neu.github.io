@@ -25,7 +25,6 @@ export default function Home() {
               <p className="project-type">{project.type}</p>
               <h2><a href={project.repo} target="_blank" rel="noreferrer">{project.title}</a></h2>
               <p className="project-deck">{project.deck}</p>
-              <p className="project-meta">{project.meta}</p>
               <a className="text-link" href={project.repo} target="_blank" rel="noreferrer">
                 View on GitHub <ArrowUpRight aria-hidden="true" size={15} />
               </a>
