@@ -13,11 +13,11 @@ const artifacts = {
     height: 1440,
   },
   inbound: {
-    src: '/projects/inbound-response-desk.png',
+    src: '/projects/inbound-response-desk.jpg',
     alt: 'Inbound Response Desk showing a website inquiry, priority, reply target, and editable draft',
     caption: 'Website inquiry',
-    width: 2560,
-    height: 1440,
+    width: 1280,
+    height: 720,
   },
   shopping: {
     src: '/projects/shopping-assistant-screen.svg',
