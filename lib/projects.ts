@@ -20,7 +20,7 @@ export const projects: Project[] = [
     slug: 'inbound-response-desk',
     title: 'Inbound Response Desk',
     type: 'B2B workflow',
-    deck: 'A workspace for preparing faster, more consistent responses to website inquiries.',
+    deck: 'A workspace for prioritizing website inquiries and preparing timely, well-informed responses.',
     artifact: 'inbound',
     repo: 'https://github.com/r-neu/inbound-response-desk',
   },
